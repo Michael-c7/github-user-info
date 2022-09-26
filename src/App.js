@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate, useParams } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react";
 import Home from "./pages/Home";
 import Dashboard from './pages/Dashboard'
@@ -8,6 +8,7 @@ import ProtectedRoute from './pages/ProtectedRoute'
 import {useGlobalContext} from './context'
 
 /*
+
 For unauthenticated requests,
 the rate limit allows for up to 60 requests per hour.
 Unauthenticated requests are associated
@@ -26,19 +27,8 @@ let githubUserFollowers = 'https://api.github.com/users/john-smilga/followers'
 
 function App() {
   // const {isLoading, isError} = useGlobalContext()
-  const { isLoggedIn } = useGlobalContext()
+  const { isLoggedIn,setIsLoggedIn,setIsLoading } = useGlobalContext()
   const { user, isAuthenticated, isLoading } = useAuth0();
-
-  // an example variable
-  // const [loggedIn, setLoggedIn] = React.useState(false)
-
-  // React.useEffect(() => {
-  //   console.log({ user, isAuthenticated, isLoading })
-  // }, [user, isAuthenticated, isLoading])
-
-  React.useEffect(() => {
-    console.log(isLoggedIn)
-  }, [isLoggedIn])
 
   return (
     <>
