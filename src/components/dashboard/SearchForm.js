@@ -1,29 +1,63 @@
 import React from 'react'
 import styled from "styled-components";
 import { MdOutlineSearch } from 'react-icons/md'
+import { useGlobalContext } from '../../context';
 
 
 const SearchForm = () => {
+  const { 
+    searchTerm,
+    setSearchTerm,
+    githubGetUser,
+    setUser,
+    fetchData,
+    githubUserFollowers,
+    setFollowers,
+   } = useGlobalContext()
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    fetchData(githubGetUser, setUser)
+    fetchData(githubUserFollowers, setFollowers)
+
+
+  }
+
+  React.useEffect(() => {
+    console.log(searchTerm)
+  }, [searchTerm])
+
+
+  /*
+  sample usernames to search
+  tarasis,benackles,cksachdev,pauloesantos,DigDug101,simpson
+  
+  */
+
   return (
     <Wrapper>
       <div className='search-form-container'>
         <div className='search-icon'>
           <MdOutlineSearch/>
         </div>
-        <form className='search-form-form'>
+        <form className='search-form-form' onSubmit={handleSubmit}>
           {/*eg: John Smilga */}
-          <input className='search-form-form__input' type='text' placeholder='Enter Github User'/>
+          <input 
+            className='search-form-form__input'
+            type='text'
+            placeholder='Enter Github User'
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
           <button className='btn--2 search-form-form__btn' type='submit'>Search</button>
         </form>
       </div>
-
     </Wrapper>
   )
 }
 
 
 const Wrapper = styled.section`
-
+  margin-right:1.25rem;
 
   .search-form-container {
     display:grid;
@@ -76,6 +110,21 @@ const Wrapper = styled.section`
     padding:0.25rem 0.5rem;
     letter-spacing:0.5px;
   }
+
+  .request-wrapper {
+    position:relative;
+    top:-3px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100%;
+  }
+
+  @media (max-width: 1200px) {
+    margin:0 1.5rem;
+  }
+
+
 
 `
 

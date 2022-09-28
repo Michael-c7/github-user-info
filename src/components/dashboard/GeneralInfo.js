@@ -1,9 +1,12 @@
 import React from 'react'
 import styled from "styled-components";
-
+import {useGlobalContext} from '../../context'
 import {FaBook, FaUserPlus, FaUserFriends, FaLaptopCode} from 'react-icons/fa'
 
+
 const GeneralInfo = () => {
+  const { user } = useGlobalContext()
+
   return (
     <Wrapper>
         <ul className='info__items'>
@@ -12,7 +15,7 @@ const GeneralInfo = () => {
               <FaBook className='info__items__icon'/>
             </div>
             <div className='info__item__info'>
-              <h2>201</h2>
+              <h2>{user?.public_repos}</h2>
               <p>repos</p>
             </div> 
           </li>
@@ -21,7 +24,7 @@ const GeneralInfo = () => {
               <FaUserFriends className='info__items__icon'/>
             </div>
             <div className='info__item__info'>
-              <h2>27602</h2>
+              <h2>{user?.followers}</h2>
               <p>followers</p>
             </div>
           </li>
@@ -30,7 +33,7 @@ const GeneralInfo = () => {
              <FaUserPlus className='info__items__icon'/>
             </div>
             <div className='info__item__info'>
-              <h2>6</h2>
+              <h2>{user?.following}</h2>
               <p>following</p>
             </div>
           </li>
@@ -39,7 +42,7 @@ const GeneralInfo = () => {
              <FaLaptopCode className='info__items__icon'/>
             </div>
             <div className='info__item__info'>
-              <h2>32</h2>
+              <h2>{user?.public_gists}</h2>
               <p>Gist</p>
             </div>
             </li>
@@ -54,6 +57,7 @@ const Wrapper = styled.section`
 
   .info__items {
     display:flex;
+    flex-direction:row;
   }
 
   .info__item {
@@ -114,6 +118,24 @@ const Wrapper = styled.section`
 
   .info__item__info {
     margin-left:1.5rem;
+  }
+
+
+
+  @media (max-width: 1200px) {
+    margin:var(--dashboard-component-top-margin) 1.5rem 0 1.5rem;
+
+    .info__items {
+      display:flex;
+      flex-direction:column;
+    }
+
+    .info__item {
+      flex-basis:100%;
+      margin:0.5rem 0;
+      padding:1rem 0;
+      text-align:center;
+    }
   }
 
 `

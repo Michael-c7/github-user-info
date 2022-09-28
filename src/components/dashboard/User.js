@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
+import {useGlobalContext} from '../../context'
 
 import { FaCity, FaMapMarkerAlt, FaLink } from 'react-icons/fa'
 
@@ -7,37 +8,37 @@ import placeholderImage from '../../default-placeholder-profile-picture.png'
 let testImg = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.t_7_j4hY-Y1FoUozKqWeiQHaFj%26pid%3DApi&f=1&ipt=0b990ebc1997429c1b191eb616f7faea27d7e8afb7711bb030b617fd44477a78&ipo=images'
 
 const User = () => {
+  const { user } = useGlobalContext()
+
   return (
     <Wrapper>
       <div className='user__profile-container'>
         <div className='user__profile'>
-          <img className='user__profile__img' src={testImg} alt=''/>
+          <img className='user__profile__img' src={user?.avatar_url || placeholderImage} alt=''/>
           <div className='user__profile__info'>
-            <h2 className='user__profile__name'>brad traverse</h2>
-            <p className='user__profile__username'>@john doe</p>
+            <h2 className='user__profile__name'>{user?.name}</h2>
+            <p className='user__profile__username'>@j{user?.login}</p>
           </div>
         </div>
         <button className='btn--3'>
-          <a href='https://github.com/john-smilga'>Follow</a>
+          <a href={user?.html_url} target='_blank' rel='noreferrer'>Follow</a>
         </button>
       </div>
 
 
       <div className='user__profile__data'>
-        <p className='user__profile__description'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <p className='user__profile__description'>{user?.bio || 'user has no description '}</p>
         <div className='user__profile__item user__profile__entity'>
           <FaCity className='user__profile__icon'/>
-          <p>Traverse media</p>
+          <p>{user?.company}</p>
         </div>
         <div className='user__profile__item user__profile__location'>
           <FaMapMarkerAlt className='user__profile__icon'/>
-          <p>Boston</p>
+          <p>{user?.location}</p>
         </div>
         <div className='user__profile__item user__profile__website'>
           <FaLink className='user__profile__icon'/>
-          <a className='link' href='/'>TraverseMedia.com</a>
+          <a className='link' href={user?.blog}>{user?.blog}</a>
         </div>
       </div>
 
@@ -51,7 +52,7 @@ const Wrapper = styled.section`
   border-radius:0px 5px 5px 5px;
   margin-right:2rem;
   padding:1.5rem;
-  max-height:400px;
+  max-height:250px;
 
   :before {
     position:absolute;
@@ -85,8 +86,6 @@ const Wrapper = styled.section`
   }
 
 
-
-
   .user__profile__img {
     width:50px;
     height:50px;
@@ -105,11 +104,9 @@ const Wrapper = styled.section`
 
   .user__profile__description {
     margin:0.5rem 0;
-    max-height:200px;
+    max-height:175px;
     overflow:auto;
   }
-
-
 
 
   .user__profile__item {
@@ -128,6 +125,13 @@ const Wrapper = styled.section`
 
   .link {
     color:var(--cyan-dark);
+  }
+
+
+
+  @media (max-width: 1200px) {
+    height:400px;
+    margin:0 1.5rem 0 1.5rem;
   }
 `
 

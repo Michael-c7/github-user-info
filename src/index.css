@@ -22,6 +22,7 @@ general colors
   --gray--1:#57728d;
   --gray--2:#8b99a3;
   --gray--3:#E2E8F0;
+  --gray--4:#F1F5F8;
 
 
   --dashboard-component-top-margin:3rem;
@@ -35,7 +36,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.4;
 
-  background:var(--gray--3);
+  background:var(--gray--4);
 }
 
 code {

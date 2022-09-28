@@ -7,20 +7,7 @@ import ErrorPage from './pages/ErrorPage'
 import ProtectedRoute from './pages/ProtectedRoute'
 import {useGlobalContext} from './context'
 
-/*
 
-For unauthenticated requests,
-the rate limit allows for up to 60 requests per hour.
-Unauthenticated requests are associated
-with the originating IP address,
-and not the user making requests.
-*/
-// github api
-let githubRootEndPoint = 'https://api.github.com/'
-let githubRateLimit = 'https://api.github.com/rate_limit'
-let githubGetUser = 'https://api.github.com/users/wesbos'
-let githubUserRepos = 'https://api.github.com/users/john-smilga/repos?per_page=100'
-let githubUserFollowers = 'https://api.github.com/users/john-smilga/followers'
 
 
 

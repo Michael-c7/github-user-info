@@ -17,7 +17,7 @@ import Loading from '../components/Loading'
 
 const Dashboard = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const { isLoggedIn,setIsLoggedIn,setIsLoading } = useGlobalContext()
+  const { isLoggedIn, setIsLoggedIn, setIsLoading } = useGlobalContext()
 
   // when server spins up start on the login page
   if(!isAuthenticated && !isLoggedIn) {
@@ -38,7 +38,6 @@ const Dashboard = () => {
   return (
     <Wrapper>
       <Header/>
-
       <main className='content-wrapper-main'>
         <div className='content-wrapper wrapper-search-and-display'>
           <SearchForm/>
@@ -54,8 +53,6 @@ const Dashboard = () => {
 
         <InfoCharts/>
       </main>
-
-
     </Wrapper>
   )
 }
@@ -70,13 +67,30 @@ const Wrapper = styled.header`
   .content-wrapper {
     display:flex;
     flex-direction:row;
-    // background:yellow;
   }
+
+  .wrapper-search-and-display {
+    display:grid;
+    grid-template-columns:75% 25%;
+  }
+
+  .wrapper-user-and-followers {
+    display:grid;
+    grid-template-columns:50% 50%;
+    margin-top:calc(var(--dashboard-component-top-margin) * 1.5);
+  }
+
+
 
 
 
   @media (max-width: 1200px) {
     width:100%;
+    .wrapper-search-and-display,
+    .wrapper-user-and-followers {
+      display:flex;
+      flex-direction:column;
+    }
   }
 
 
@@ -85,22 +99,6 @@ const Wrapper = styled.header`
       display:flex;
       flex-direction:column;
     }
-  }
-
-
-
-  .wrapper-search-and-display {
-    display:grid;
-    grid-template-columns:75% 25%;
-  }
-
-
-
-
-  .wrapper-user-and-followers {
-    display:grid;
-    grid-template-columns:50% 50%;
-    margin-top:calc(var(--dashboard-component-top-margin) * 1.5);
   }
 `
 

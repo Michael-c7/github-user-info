@@ -18,7 +18,7 @@ const Wrapper = styled.article`
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:5rem;
+  font-size:2.5rem;
 
   @keyframes spin {
     from {

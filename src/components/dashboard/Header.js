@@ -58,7 +58,7 @@ const Wrapper = styled.header`
 
 
   .logout-btn {
-    margin-left:calc(var(--spacing) * 2);
+    margin-left:calc(var(--spacing));
     position:relative;
     top:2px;
   }

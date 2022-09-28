@@ -4,11 +4,7 @@ import { useGlobalContext } from '../context'
 
 const ProtectedRoute = ({children, isAuthenticated}) => {
   const { isLoggedIn } = useGlobalContext()
-
-  React.useEffect(() => {
-    console.log(isLoggedIn)
-  }, [])
-
+  
   if(!isLoggedIn) {
     return <Navigate to='/login'/>
   }

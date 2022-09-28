@@ -1,70 +1,24 @@
 import React from 'react'
 import styled from "styled-components";
-
-let testImg = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.SYl6dtEToEu5XaogMNFC0AHaD2%26pid%3DApi&f=1&ipt=2a77825593c10bef69d1c03606e7d50d3f23e33d193d75e8ec15cfd67c7a9440&ipo=images'
-
+import {useGlobalContext} from '../../context'
 
 const FollowersList = () => {
+  const { followers } = useGlobalContext()
   return (
     <Wrapper>
       <div className='followers_container'>
         <ul className='followers'>
-          <li className='followers__item'>
-            <img className='followers__item__img' src={testImg} alt=''/>
-            <div className='followers__item__data'>
-              <h2 className='followers__item__name'>john smith</h2>
-              <a className='followers__item__link' href='/'>https://github.com/john-smilga</a>
-            </div>
-          </li>
-          <li className='followers__item'>
-            <img className='followers__item__img' src={testImg} alt=''/>
-            <div className='followers__item__data'>
-              <h2 className='followers__item__name'>john smith</h2>
-              <a className='followers__item__link' href='/'>https://github.com/john-smilga</a>
-            </div>
-          </li>
-          <li className='followers__item'>
-            <img className='followers__item__img' src={testImg} alt=''/>
-            <div className='followers__item__data'>
-              <h2 className='followers__item__name'>john smith</h2>
-              <a className='followers__item__link' href='/'>https://github.com/john-smilga</a>
-            </div>
-          </li>
-          <li className='followers__item'>
-            <img className='followers__item__img' src={testImg} alt=''/>
-            <div className='followers__item__data'>
-              <h2 className='followers__item__name'>john smith</h2>
-              <a className='followers__item__link' href='/'>https://github.com/john-smilga</a>
-            </div>
-          </li>
-          <li className='followers__item'>
-            <img className='followers__item__img' src={testImg} alt=''/>
-            <div className='followers__item__data'>
-              <h2 className='followers__item__name'>john smith</h2>
-              <a className='followers__item__link' href='/'>https://github.com/john-smilga</a>
-            </div>
-          </li>
-          <li className='followers__item'>
-            <img className='followers__item__img' src={testImg} alt=''/>
-            <div className='followers__item__data'>
-              <h2 className='followers__item__name'>john smith</h2>
-              <a className='followers__item__link' href='/'>https://github.com/john-smilga</a>
-            </div>
-          </li>
-          <li className='followers__item'>
-            <img className='followers__item__img' src={testImg} alt=''/>
-            <div className='followers__item__data'>
-              <h2 className='followers__item__name'>john smith</h2>
-              <a className='followers__item__link' href='/'>https://github.com/john-smilga</a>
-            </div>
-          </li>
-          <li className='followers__item'>
-            <img className='followers__item__img' src={testImg} alt=''/>
-            <div className='followers__item__data'>
-              <h2 className='followers__item__name'>john smith</h2>
-              <a className='followers__item__link' href='/'>https://github.com/john-smilga</a>
-            </div>
-          </li>
+          {followers.map((follower) => {
+            return (
+              <li className='followers__item' key={follower?.id}>
+                <img className='followers__item__img' src={follower?.avatar_url} alt={follower?.name}/>
+                <div className='followers__item__data'>
+                  <h2 className='followers__item__name'>{follower?.html_url?.slice(19)}</h2>
+                  <a className='followers__item__link' href={follower?.html_url}>{follower?.html_url}</a>
+                </div>
+              </li>
+            )
+          })}
         </ul>
       </div>
     </Wrapper>
@@ -77,7 +31,7 @@ const Wrapper = styled.section`
   background:#fff;
   border-radius:0px 5px 5px 5px;
   padding:2rem;
-  max-height:400px;
+  max-height:250px;
   margin-left:2rem;
 
 
@@ -132,6 +86,13 @@ const Wrapper = styled.section`
 
   .followers__item__link {
     color:var(--gray--2);
+  }
+
+
+
+  @media (max-width: 1200px) {
+    height:400px;
+    margin:3rem 1.5rem 0 1.5rem;
   }
 `
 
