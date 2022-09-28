@@ -12,6 +12,8 @@ import GeneralInfo from '../components/dashboard/GeneralInfo'
 import User from '../components/dashboard/User'
 import FollowerList from '../components/dashboard/FollowersList'
 import InfoCharts from '../components/dashboard/InfoCharts'
+// components
+import Loading from '../components/Loading'
 
 const Dashboard = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -23,7 +25,7 @@ const Dashboard = () => {
   }
 
   if(isLoading) {
-    return <h2>Loading...</h2>
+    return <Loading/>
   }
 
   /*to prevent people from clicking the login btn on the login screen, then being sent the the auth0 login screen then backing out and putting on the url for the dashboard */
@@ -37,26 +39,69 @@ const Dashboard = () => {
     <Wrapper>
       <Header/>
 
-      <div >
-        <SearchForm/>
-        <RequestDisplay/>
-      </div>
+      <main className='content-wrapper-main'>
+        <div className='content-wrapper wrapper-search-and-display'>
+          <SearchForm/>
+          <RequestDisplay/>
+        </div>
 
-      <GeneralInfo/>
+        <GeneralInfo/>
 
-      <div>
-        <User/>
-        <FollowerList/>
-      </div>
+        <div className='content-wrapper wrapper-user-and-followers'>
+          <User/>
+          <FollowerList/>
+        </div>
 
-      <InfoCharts/>
+        <InfoCharts/>
+      </main>
+
+
     </Wrapper>
   )
 }
 
 
 const Wrapper = styled.header`
-  background:#E2E8F0;
+  .content-wrapper-main {
+    width:1200px;
+    margin:calc(var(--dashboard-component-top-margin) * 1.5) auto 0 auto;
+  }
+
+  .content-wrapper {
+    display:flex;
+    flex-direction:row;
+    // background:yellow;
+  }
+
+
+
+  @media (max-width: 1200px) {
+    width:100%;
+  }
+
+
+  @media (max-width: 768px) {
+    .content-wrapper {
+      display:flex;
+      flex-direction:column;
+    }
+  }
+
+
+
+  .wrapper-search-and-display {
+    display:grid;
+    grid-template-columns:75% 25%;
+  }
+
+
+
+
+  .wrapper-user-and-followers {
+    display:grid;
+    grid-template-columns:50% 50%;
+    margin-top:calc(var(--dashboard-component-top-margin) * 1.5);
+  }
 `
 
 export default Dashboard

@@ -6,6 +6,27 @@
   margin:0;
 }
 
+/*
+general colors
+*/
+
+:root {
+  --pink:#ffdbec;
+  --pink-dark:#bb437f;
+  --cyan:#d8fafa;
+  --cyan-dark:#28a4ad;
+  --purple:#e2e2fe;
+  --purple-dark:#6f6ae0;
+  --yellow:#fef9e7;
+  --yellow-dark:#fcd46c;
+  --gray--1:#57728d;
+  --gray--2:#8b99a3;
+  --gray--3:#E2E8F0;
+
+
+  --dashboard-component-top-margin:3rem;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -13,7 +34,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.4;
-  
+
+  background:var(--gray--3);
 }
 
 code {
@@ -31,6 +53,11 @@ a {
 }
 
 
+
+
+
+
+
 /*general styles / classes*/
 .center-center {
   position: absolute;
@@ -40,11 +67,51 @@ a {
   text-align:center;
 }
 
-
-.btn {
-
+/*logout btn*/
+.btn--1 {
+  border:none;
+  background:none;
+  font-weight:600;
+  font-size: 1.15rem;
+  color:var(--gray--2);
+  transition:filter 0.1s ease;
 }
 
+.btn--1:hover {
+  filter:contrast(200%);
+  cursor:pointer;
+}
+
+/*search & login btn*/
+.btn--2 {
+  border:none;
+  background:var(--cyan-dark);
+  color:#fff;
+  border-radius:5px;
+  
+}
+
+.btn--2:hover {
+  filter:contrast(110%);
+  cursor:pointer;
+}
+
+/*follow btn*/
+.btn--3 {
+  border:2px solid var(--cyan-dark);
+  background:none;
+  color:var(--cyan-dark);
+  border-radius:100px;
+  padding:0.35rem 1rem;
+  font-weight:500;
+  font-size:1rem;
+  letter-spacing:0.55px;
+}
+
+.btn--3:hover {
+  filter:contrast(125%);
+  cursor:pointer;
+}
 
 
 

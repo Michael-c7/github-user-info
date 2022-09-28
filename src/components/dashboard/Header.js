@@ -10,12 +10,14 @@ const Header = () => {
     <Wrapper>
       {isAuthenticated ? (
         <div className='dashboard__content'>
-          <img src={user.picture} alt={user.name} />
-          <h2 className='dashboard__content__heading'><span>Welcome, </span>{user.name}<span>({user.email})</span></h2>
-          <div style={{marginLeft:'2rem'}}><LogoutButton/></div>
+          <img className='dashboard__content__img'src={user.picture} alt={user.name} />
+          <h2 className='dashboard__content__heading'><span>Welcome, </span>{user.name} <span>({user.email})</span></h2>
+          <div className='logout-btn'>
+            <LogoutButton/>
+          </div>
         </div>
       ) : (
-        <h2>user is not authenticated</h2>
+        <h2 className='no-auth'>user is not authenticated</h2>
       )}
     </Wrapper>
   )
@@ -23,8 +25,10 @@ const Header = () => {
 
 
 const Wrapper = styled.header`
+  --spacing:1.5rem;
   background:#fff;
   width:100%;
+  font-size:0.85rem;
   
   
   .dashboard__content {
@@ -33,6 +37,44 @@ const Wrapper = styled.header`
     flex-direction:row;
     justify-content:center;
     align-items:center;
+    flex-wrap:wrap;
+    text-align:center;
+  }
+
+  .dashboard__content__img {
+    width:40px;
+    height:40px;
+    border-radius:100px;
+    margin-right:var(--spacing);
+  }
+
+  .dashboard__content__heading {
+
+  }
+
+  .dashboard__content__heading span {
+    font-weight:400;
+  }
+
+
+  .logout-btn {
+    margin-left:calc(var(--spacing) * 2);
+    position:relative;
+    top:2px;
+  }
+
+  .no-auth {
+    text-align:center;
+  }
+
+
+  @media (max-width:435px) {
+    --spacing:0rem;
+
+    .logout-btn {
+      margin-top:0.25rem;
+      top:0px;
+    }
   }
 `
 
