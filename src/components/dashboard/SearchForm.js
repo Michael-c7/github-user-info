@@ -13,19 +13,19 @@ const SearchForm = () => {
     fetchData,
     githubUserFollowers,
     setFollowers,
+    githubRateLimit,
+    setRateLimit,
    } = useGlobalContext()
 
   const handleSubmit = e => {
     e.preventDefault()
     fetchData(githubGetUser, setUser)
     fetchData(githubUserFollowers, setFollowers)
+    // rate limit
+    fetchData(githubRateLimit, setRateLimit)
 
 
   }
-
-  React.useEffect(() => {
-    console.log(searchTerm)
-  }, [searchTerm])
 
 
   /*

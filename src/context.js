@@ -74,12 +74,13 @@ let githubUserFollowers = `https://api.github.com/users/${searchTerm}/followers`
             isError,setIsError,
             isLoggedIn, setIsLoggedIn,
             searchTerm, setSearchTerm,
-            rateLimit,
+            rateLimit,setRateLimit,
             user,setUser,
             repos,
             followers,setFollowers,
             githubGetUser,
             githubUserFollowers,
+            githubRateLimit,
             fetchData,
         }}>
             {children}
